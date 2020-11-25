@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+{% block body %}
+<div class="col-md-4 mx-auto">
+  <div class="card mb-5">
+    <div class="card-header mx-2 theme-color">
+      <h5 class="text-light">Login</h5>
+    </div>
+    <div class="card-body">
+      <form action="{% url 'auth:login' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+					{% include "partials/messages.html" %}
+          {% if form.email.errors %}
+            <div class="alert alert-danger" role="alert">
+                {{ form.email.errors }}
+            </div>
+        {% endif %}		          
+          {{ form.email }}
+          <div class="invalid-feedback" id="emailFieldFeedback"></div>
+        </div>
+        {% if form.password.errors %}
+          <div class="alert alert-danger" role="alert">
+            {{ form.password.errors }}
+          </div>
+        {% endif %}	
+        <div class="input-group mb-3">
+          {{ form.password }}
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fa fa-eye-slash" id="tooglePassword" style="cursor: pointer;"></span>
+            </div>
+          </div>
+          <div class="invalid-feedback" id="passwordFieldFeedback"></div>
+        </div>
+        <button type="submit" class="btn theme-color text-light btn-block" id="btnSubmit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/login.js' %}"></script>
+{% endblock %}

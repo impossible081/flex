@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Verify Email{% endblock %}
+{% block body %}
+<div class="container">
+  {% include "partials/messages.html" %}
+  <h4 class="text-center">Verify you're a human with Flex Online Shopping mall</h4>
+
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card shadow-sm mt-3 mb-5">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <p class="">We sent an email to {{ email }} <br> <br>
+    
+                To continue, please check your email and verify your account. <br> <br>
+                
+                Didn't receive the email? <br> <br>
+                
+               <a href="{% url 'auth:resend-email' %}"> Resend Email</a></p>
+            </div>
+            <div class="col-md-6">
+              <img src="{% static 'img/mail.png' %}" class="img-responsive wow swing" width="200" alt="">
+            </div>
+          </div>
+           
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
